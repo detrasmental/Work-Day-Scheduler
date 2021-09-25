@@ -1,58 +1,65 @@
-// Using Moment, but look at Luxon for the future
-var todayDate = moment().format('dddd, MMM Do YYYY LT');
-$("#currentDay").html(todayDate);
+//Todays date and current time
+    var currentDate = moment().format("dddd, MMMM Do YYYY");
+    var interval = setInterval(function() {
+        var momentNow = moment();
+        $('#currentDay').html(momentNow.format('YYYY MMMM DD') + ' '
+                            + momentNow.format('dddd')
+                             .substring(0,3).toUpperCase());
+        $('#currentDay').html(currentDate + " " + momentNow.format('hh:mm:ss A'));
+      }, 100);
+$(document).ready(function() {
+    
+    
+    function changeColor() {
+        // the current time
+        var currentHour = moment().hours();
 
-$(function () {
-    $(".saveButton").on("click", function () {
-        var text = $(this).siblings(".description").val();
-        var time = $(this).parent().attr("id");
-
-        // Save to local storage
-        localStorage.setItem(time, text);
-    })
-   
-    function timeTracker() {
-        //get the current time
-        var timeNow = moment().time();
-
+        // changes background color based on if the time is past, present or future
         $(".time-block").each(function () {
-            var blockTime = parseInt($(this).attr("id").split("time")[1]);
+            var timeIs = parseInt($(this).attr("id"));
 
-          
-            if (blockTime < timeNow) {
+            console.log(timeIs, currentHour);
+
+            // what time is it? Change color accordingly 
+            if (timeIs < currentHour) {
                 $(this).addClass("past");
-                $(this).removeClass("present");
-                $(this).removeClass("future");
-                
-                
-            }
-            else if (blockTime === timeNow) {
+            } else if (timeIs === currentHour) {
                 $(this).removeClass("past");
                 $(this).addClass("present");
-                $(this).removeClass("future");
-                
-            }
-            else {
+            } else {
                 $(this).removeClass("past");
                 $(this).removeClass("present");
                 $(this).addClass("future");
-
             }
-        })
+        });
+
     }
 
-    // Get item from local storage, display to time block
+    changeColor();
 
-    $("#time8am .description").val(localStorage.getItem("time8am"));
-    $("#time9am .description").val(localStorage.getItem("time9am"));
-    $("#time10am .description").val(localStorage.getItem("time10am"));
-    $("#time11am .description").val(localStorage.getItem("time11am"));
-    $("#time12pm .description").val(localStorage.getItem("time12pm"));
-    $("#time1pm .description").val(localStorage.getItem("time1pm"));
-    $("#time2pm .description").val(localStorage.getItem("time2pm"));
-    $("#time3pm .description").val(localStorage.getItem("time3pm"));
-    $("#time4pm .description").val(localStorage.getItem("time4pm"));
-    $("#time5pm .description").val(localStorage.getItem("time5pm"));
+    $(".saveBtn").click(function () { 
+        // console.log(this);
+        var text = $(this).siblings(".schedule").val();
+        var time = $(this).parent().attr("id");
+        // console.log(text, time);
+        localStorage.setItem(time, text);
+        console.log(text);
+    });
 
-    timeTracker();
-})
+    $("#9 .schedule").val(localStorage.getItem("9"));
+    $("#10 .schedule").val(localStorage.getItem("10"));
+    $("#11 .schedule").val(localStorage.getItem("11"));
+    $("12 .schedule").val(localStorage.getItem("12"));
+    $("#13 .schedule").val(localStorage.getItem("13"));
+    $("#14 .schedule").val(localStorage.getItem("14"));
+    $("#15 .schedule").val(localStorage.getItem("15"));
+    $("#16 .schedule").val(localStorage.getItem("16"));
+    $("#17 .schedule").val(localStorage.getItem("17"));
+
+    $(".redbtn").click(function() {
+        $("textarea").val("");
+        localStorage.clear()
+        });
+
+
+});
