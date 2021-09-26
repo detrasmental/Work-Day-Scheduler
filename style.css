@@ -13,7 +13,7 @@ textarea{
     background: transparent;
     border: none;
     resize: none;
-    color: rgb(245, 245, 245);
+    color: rgb(17, 15, 15);
     border-left: 1px solid black;
     padding: 10px;
     
@@ -25,7 +25,7 @@ textarea{
     background-color: transparent;
     color: black;
     border-radius: 0;
-    border-bottom: 10px solid black;  
+    border-bottom: 10px solid black;
   }
   
   .description{
@@ -63,6 +63,13 @@ textarea{
     background-color: #77dd77;
     color: white;
   }
+
+  #footer h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
   
   .saveBtn {
     border-left: 1px solid black;
@@ -104,3 +111,6 @@ textarea{
         opacity: 1;
     }
 }
+
+
+

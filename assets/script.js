@@ -46,6 +46,7 @@ $(document).ready(function() {
         console.log(text);
     });
 
+    $("#8 .schedule").val(localStorage.getItem("8"));
     $("#9 .schedule").val(localStorage.getItem("9"));
     $("#10 .schedule").val(localStorage.getItem("10"));
     $("#11 .schedule").val(localStorage.getItem("11"));
